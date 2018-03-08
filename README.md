@@ -138,7 +138,7 @@ http_request_duration_seconds_count{status_code="200",path="/",method="GET"} 15
 http_request_duration_seconds_sum{status_code="200",path="/",method="GET"} 18.534
 ```
 
-[circleci-image]: https://circleci.com/gh/qlik-oss/http-metrics-middleware.svg?style=shield&circle-token=FIXME
+[circleci-image]: https://circleci.com/gh/qlik-oss/http-metrics-middleware.svg?style=shield&circle-token=d1a68a4809e9cd7056a9d537b802955fef0025d4
 [circleci-url]: https://circleci.com/gh/qlik-oss/http-metrics-middleware
 
 [prom-client]: https://github.com/siimon/prom-client
