@@ -99,28 +99,20 @@ class MetricsMiddleware {
       labelNames.push('path');
     }
     if (this.options.enableDurationSummary) {
-      this.durationMetrics.push(
-        new promClient.Summary({
-          name: this.options.durationSummaryName,
-          help: `duration summary of http responses labeled with: ${labelNames.join(
-            ', ',
-          )}`,
-          labelNames,
-          percentiles: this.options.quantileBuckets,
-        }),
-      );
+      this.durationMetrics.push(new promClient.Summary({
+        name: this.options.durationSummaryName,
+        help: `duration summary of http responses labeled with: ${labelNames.join(', ')}`,
+        labelNames,
+        percentiles: this.options.quantileBuckets,
+      }));
     }
     if (this.options.enableDurationHistogram) {
-      this.durationMetrics.push(
-        new promClient.Histogram({
-          name: this.options.durationHistogramName,
-          help: `duration histogram of http responses labeled with: ${labelNames.join(
-            ', ',
-          )}`,
-          labelNames,
-          buckets: this.options.timeBuckets,
-        }),
-      );
+      this.durationMetrics.push(new promClient.Histogram({
+        name: this.options.durationHistogramName,
+        help: `duration histogram of http responses labeled with: ${labelNames.join(', ')}`,
+        labelNames,
+        buckets: this.options.timeBuckets,
+      }));
     }
     promClient.collectDefaultMetrics();
 
@@ -222,11 +214,9 @@ class MetricsMiddleware {
       return false;
     }
 
-    return regexps.some(
-      regexp =>
-        (regexp instanceof RegExp && element.match(regexp)) ||
-        element === regexp,
-    );
+    return regexps.some(regexp =>
+      (regexp instanceof RegExp && element.match(regexp)) ||
+      element === regexp);
   }
 }
 

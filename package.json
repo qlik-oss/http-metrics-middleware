@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "aw --coverage --nyc.babel false --glob test/index_test.js",
+    "test": "npm run lint && aw --coverage --nyc.babel false --glob test/index_test.js",
     "test:codeclimate": "npm test && cat coverage/lcov.info | codeclimate-test-reporter",
     "lint": "eslint .",
     "lint-fix": "eslint --fix ."
@@ -26,19 +26,20 @@
   },
   "homepage": "https://github.com/qlik-oss/http-metrics-middleware#readme",
   "dependencies": {
-    "express": "4.16.0",
+    "express": "4.16.2",
     "lodash": "4.17.5",
     "on-finished": "2.3.0",
     "performance-now": "2.1.0",
-    "prom-client": "10.1.0",
+    "prom-client": "10.2.3",
     "url-value-parser": "1.0.0"
   },
   "devDependencies": {
     "after-work.js": "4.1.0",
+    "chai": "4.1.2",
     "codeclimate-test-reporter": "0.5.0",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb-base": "11.1.3",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-mocha": "4.11.0"
+    "eslint": "4.18.2",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-mocha": "4.12.1"
   }
 }
