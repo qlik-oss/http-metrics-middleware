@@ -50,7 +50,7 @@ constructor.
 | `includePath` | `true` |  whether or not to include normalized URL path as a metric label - see [about `includePath`](#about-includepath) below |
 | `normalizePath` | |  a `function(req)` - generates path values from the express `req` object |
 | `paramIgnores` | `[]` |  array of path parameters _not_ to replace. _Use with caution as this may cause high label cardinality._ |
-| `formatStatusCode` | `(res) => res.status_code || res.statusCode` |  a `function(res)` - generates path values from the express `res` object |
+| `formatStatusCode` | `(res) => res.status_code` || res.statusCode` |  a `function(res)` - generates path values from the express `res` object |
 | `enableDurationHistogram` | `true` |  whether to enable the request duration histogram |
 | `enableDurationSummary` | `true` |  whether to enable the request duration summary |
 | `durationHistogramName` | `http_request_duration_seconds` |  the name of the duration histogram metric - must be unique |
