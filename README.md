@@ -1,7 +1,7 @@
 [![Build Status][circleci-image]][circleci-url]
-[![Code Climate GPA][codeclimate-gpa-image]][codeclimate-url]
 [![Test Coverage][codeclimate-coverage-image]][codeclimate-coverage-url]
-[![Issue Count][codeclimate-issues-image]][codeclimate-url]
+[![npm][npm-image]][npm-url]
+[![downloads][downloads-image]][npm-url]
 
 # http-metrics-middleware
 
@@ -138,14 +138,14 @@ http_request_duration_seconds_count{status_code="200",path="/",method="GET"} 15
 http_request_duration_seconds_sum{status_code="200",path="/",method="GET"} 18.534
 ```
 
-[circleci-image]: https://circleci.com/gh/qlik-oss/http-metrics-middleware.svg?style=shield&circle-token=d1a68a4809e9cd7056a9d537b802955fef0025d4
-[circleci-url]: https://circleci.com/gh/qlik-oss/http-metrics-middleware
-
 [prom-client]: https://github.com/siimon/prom-client
 
-[codeclimate-url]: https://codeclimate.com/repos/FIXME/feed
+[circleci-image]: https://circleci.com/gh/qlik-oss/http-metrics-middleware/tree/master.svg?style=svg
+[circleci-url]: https://circleci.com/gh/qlik-oss/http-metrics-middleware/tree/master
 
-[codeclimate-gpa-image]: https://codeclimate.com/repos/FIXME/badges/FIXME/gpa.svg
-[codeclimate-coverage-image]: https://codeclimate.com/repos/FIXME/badges/FIXME/coverage.svg
-[codeclimate-coverage-url]: https://codeclimate.com/repos/FIXME/coverage
-[codeclimate-issues-image]: https://codeclimate.com/repos/FIXME/badges/FIXME/issue_count.svg
+[codeclimate-coverage-image]: https://api.codeclimate.com/v1/badges/7277bae241272bb5eb59/test_coverage
+[codeclimate-coverage-url]: https://codeclimate.com/github/qlik-oss/http-metrics-middleware/test_coverage
+
+[npm-url]: https://www.npmjs.com/package/http-metrics-middleware
+[npm-image]: https://img.shields.io/npm/v/http-metrics-middleware.svg
+[downloads-image]: https://img.shields.io/npm/dt/http-metrics-middleware.svg
