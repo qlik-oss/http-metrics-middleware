@@ -1,0 +1,23 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.10.0
+    working_directory: ~/http-metrics-middleware
+    steps:
+      - checkout
+      - run:
+          name: Create report directory
+          command: mkdir -p ./reports
+      - run:
+          name: Update version
+          command: |
+            VER=$(node -e "console.log(require('./package.json').version.replace(/-[0-9]+/, '-$CIRCLE_BUILD_NUM'))")
+            echo "$VER" > ./version.txt
+            if (echo $VER | egrep -- '-[0-9]+$' 1> /dev/null); then
+              npm version $VER --no-git-tag-version
+            fi
+      - run: npm install
+      - run: npm run lint
+      - run: npm run test:codeclimate

@@ -1,0 +1,7 @@
+test/
+coverage/
+.vscode
+.nvmrc
+circle.yml
+Makefile
+*.md

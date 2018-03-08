@@ -1,0 +1,47 @@
+{
+  "name": "http-metrics-middleware",
+  "version": "1.0.0-0",
+  "description": "Express middleware for adding common prometheus metrics",
+  "author": "QlikTech International AB",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "aw --coverage --nyc.babel false --glob test/index_test.js",
+    "test:codeclimate": "npm test && cat coverage/lcov.info | codeclimate-test-reporter",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/qlik-trial/express-prom-client.git"
+  },
+  "publishConfig": {
+    "registry": "https://qliktech.jfrog.io/qliktech/api/npm/npm-local"
+  },
+  "keywords": [
+    "express",
+    "koa",
+    "prometheus",
+    "metrics"
+  ],
+  "bugs": {
+    "url": "https://github.com/qlik-trial/express-prom-client/issues"
+  },
+  "homepage": "https://github.com/qlik-trial/express-prom-client#readme",
+  "dependencies": {
+    "express": "4.16.0",
+    "lodash": "4.17.5",
+    "on-finished": "2.3.0",
+    "performance-now": "2.1.0",
+    "prom-client": "10.1.0",
+    "url-value-parser": "1.0.0"
+  },
+  "devDependencies": {
+    "after-work.js": "4.1.0",
+    "codeclimate-test-reporter": "0.5.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb-base": "11.1.3",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-mocha": "4.11.0"
+  }
+}
