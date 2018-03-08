@@ -140,7 +140,7 @@ http_request_duration_seconds_sum{status_code="200",path="/",method="GET"} 18.53
 
 [prom-client]: https://github.com/siimon/prom-client
 
-[circleci-image]: https://circleci.com/gh/qlik-oss/http-metrics-middleware/tree/master.svg?style=svg
+[circleci-image]: https://circleci.com/gh/qlik-oss/http-metrics-middleware/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/qlik-oss/http-metrics-middleware/tree/master
 
 [codeclimate-coverage-image]: https://api.codeclimate.com/v1/badges/7277bae241272bb5eb59/test_coverage
