@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "aw --coverage --nyc.babel false --glob test/index_test.js",
+    "test": "npm run lint && aw --coverage --nyc.babel false --glob test/index_test.js",
     "test:codeclimate": "npm test && cat coverage/lcov.info | codeclimate-test-reporter",
     "lint": "eslint .",
     "lint-fix": "eslint --fix ."
