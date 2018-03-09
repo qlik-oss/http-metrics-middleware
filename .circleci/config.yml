@@ -8,6 +8,19 @@ jobs:
     steps:
       - checkout
       - run:
+          name: greenkeeper-lockfile - Update
+          command: |
+            sudo npm install -g greenkeeper-lockfile@1
+            greenkeeper-lockfile-update
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run: npm install --no-save
+      - run: greenkeeper-lockfile-upload
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
           name: Create report directory
           command: mkdir -p ./reports
       - run:
@@ -18,6 +31,5 @@ jobs:
             if (echo $VER | egrep -- '-[0-9]+$' 1> /dev/null); then
               npm version $VER --no-git-tag-version
             fi
-      - run: npm install
       - run: npm run lint
       - run: npm run test:codeclimate
