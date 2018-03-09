@@ -206,6 +206,11 @@ class MetricsMiddleware {
     if (path.includes(encoded)) {
       return path.replace(encoded, `#${param}`);
     }
+
+    if (path.includes(params[param])) {
+      return encodeURI(path.replace(params[param], `#${param}`));
+    }
+
     return path;
   }
 

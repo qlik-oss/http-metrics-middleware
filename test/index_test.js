@@ -1,6 +1,8 @@
 const MetricsMiddleware = require('../index');
 const os = require('os');
 const promClient = require('prom-client');
+const chai = require('chai');
+const sinon = require('sinon');
 
 const should = chai.should();
 
@@ -74,12 +76,13 @@ describe('MetricsMiddleware', () => {
       metrics.normalizePath({ originalUrl, params: { resource, 0: id } }).should.eql(expected);
     });
 
-    // it('truncates at unsafe characters', () => {
-    //   const id =
-    //   const unsafe = '/api/v1/apps/"><script>alert(1010)</script>'
-    //   const expected = '/api/v1/apps/'
-    //   metrics.normalizePath({originalUrl, params: {resource, 0: id}}.should.eql(expected))
-    // })
+    it('replaces params on request with params that have mixture of encoded and unencoded characters', () => {
+      const foo = 'foo';
+      const mixed = 'bar/baz[$qux]%3dquux%26quuz*]]%3dcorge%2e%2a';
+      const originalUrl = `/${foo}/${mixed}`;
+      const expected = '/#foo/#0';
+      metrics.normalizePath({ originalUrl, params: { foo, 0: mixed } }).should.eql(expected);
+    });
 
     it('does not replace sub-resources', () => {
       const id = 'blahblahblah';
