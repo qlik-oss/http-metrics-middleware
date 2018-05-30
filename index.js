@@ -123,12 +123,21 @@ class MetricsMiddleware {
 
   metricsRoute(req, res) {
     if (req.headers['x-forwarded-for']) {
-      return res.sendStatus(404);
+      res.writeHead(404, {
+        'Content-Type': 'text/plain'
+      });
+      return res.end('Not Found');
     }
-    res.type('text');
-    return res.send(promClient.register.metrics());
+    if (req.headers['accept'].includes("text")) {
+      res.setHeader('content-type', 'text/plain');
+      return res.end(promClient.register.metrics())
+    }
+    else {
+      res.setHeader('content-type', 'text/json');
+      return res.end(JSON.stringify(promClient.register.getMetricsAsJSON()))
+    }
   }
-
+  
   trackDuration(req, res, next) {
     if (
       this.options.excludeRoutes &&
