@@ -124,20 +124,18 @@ class MetricsMiddleware {
   metricsRoute(req, res) {
     if (req.headers['x-forwarded-for']) {
       res.writeHead(404, {
-        'Content-Type': 'text/plain'
+        'Content-Type': 'text/plain',
       });
       return res.end('Not Found');
     }
-    if (req.headers['accept'].includes("text")) {
-      res.setHeader('content-type', 'text/plain');
-      return res.end(promClient.register.metrics())
+    if (req.headers.accept && req.headers.accept.includes('text')) {
+      res.setHeader('Content-Type', 'text/plain');
+      return res.end(promClient.register.metrics());
     }
-    else {
-      res.setHeader('content-type', 'text/json');
-      return res.end(JSON.stringify(promClient.register.getMetricsAsJSON()))
-    }
+    res.setHeader('Content-Type', 'application/json');
+    return res.end(JSON.stringify(promClient.register.getMetricsAsJSON()));
   }
-  
+
   trackDuration(req, res, next) {
     if (
       this.options.excludeRoutes &&
