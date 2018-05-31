@@ -128,12 +128,8 @@ class MetricsMiddleware {
       });
       return res.end('Not Found');
     }
-    if (req.headers.accept && req.headers.accept.includes('text')) {
-      res.setHeader('Content-Type', 'text/plain');
-      return res.end(promClient.register.metrics());
-    }
-    res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify(promClient.register.getMetricsAsJSON()));
+    res.setHeader('Content-Type', 'text/plain');
+    return res.end(promClient.register.metrics());
   }
 
   trackDuration(req, res, next) {
