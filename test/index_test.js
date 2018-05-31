@@ -319,9 +319,9 @@ describe('MetricsMiddleware', () => {
 
     beforeEach(() => {
       res = {
-        sendStatus() { throw new Error('unexpected sendStatus() called'); },
-        send() { throw new Error('unexpected send() called'); },
-        type() { throw new Error('unexpected type() called'); },
+        writeHead() { throw new Error('unexpected writeHead() called'); },
+        end() { throw new Error('unexpected end() called'); },
+        setHeader() { throw new Error('unexpected setHeader() called'); },
       };
       resMock = sinon.mock(res);
       registerMock = sinon.mock(promClient.register);
@@ -333,17 +333,18 @@ describe('MetricsMiddleware', () => {
     });
 
     it('404s when proxied', () => {
-      resMock.expects('sendStatus').withArgs(404);
+      resMock.expects('writeHead').withArgs(404);
+      resMock.expects('end');
       metrics.metricsRoute({ headers: { 'x-forwarded-for': 'foo' } }, res);
       resMock.verify();
     });
 
     it('registers metrics', () => {
-      resMock.expects('type').withArgs('text');
+      resMock.expects('setHeader').withArgs('Content-Type', 'text/plain');
       registerMock.expects('metrics').returns('foo');
-      resMock.expects('send').withArgs('foo');
+      resMock.expects('end').withArgs('foo');
 
-      metrics.metricsRoute({ headers: {} }, res);
+      metrics.metricsRoute({ headers: { accept: 'text/plain' } }, res);
       resMock.verify();
       metricsPromClient.verify();
       registerMock.verify();

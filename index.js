@@ -123,10 +123,13 @@ class MetricsMiddleware {
 
   metricsRoute(req, res) {
     if (req.headers['x-forwarded-for']) {
-      return res.sendStatus(404);
+      res.writeHead(404, {
+        'Content-Type': 'text/plain',
+      });
+      return res.end('Not Found');
     }
-    res.type('text');
-    return res.send(promClient.register.metrics());
+    res.setHeader('Content-Type', 'text/plain');
+    return res.end(promClient.register.metrics());
   }
 
   trackDuration(req, res, next) {
