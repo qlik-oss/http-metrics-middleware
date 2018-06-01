@@ -339,7 +339,7 @@ describe('MetricsMiddleware', () => {
       resMock.verify();
     });
 
-    it('returns the content type with highest q weight', () => {
+    it('returns the content-type with highest q weight', () => {
       resMock.expects('setHeader').withArgs('Content-Type', 'application/json');
       resMock.expects('end');
       metrics.metricsRoute({ headers: { accept: 'text/plain;q=0.80,application/json;q=0.9' } }, res);
