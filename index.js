@@ -129,8 +129,9 @@ class MetricsMiddleware {
       });
       return res.end('Not Found');
     }
+    res.statusCode = 200;
     const accept = accepts(req);
-    switch (accept.type(['json', 'text'])) {
+    switch (accept.type(['text', 'json'])) {
       case 'json':
         res.setHeader('Content-Type', 'application/json');
         return res.end(JSON.stringify(promClient.register.getMetricsAsJSON()));
