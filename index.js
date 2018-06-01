@@ -1,3 +1,4 @@
+const accepts = require('accepts');
 const express = require('express');
 const promClient = require('prom-client');
 const UrlValueParser = require('url-value-parser');
@@ -128,8 +129,17 @@ class MetricsMiddleware {
       });
       return res.end('Not Found');
     }
-    res.setHeader('Content-Type', 'text/plain');
-    return res.end(promClient.register.metrics());
+    res.statusCode = 200;
+    const accept = accepts(req);
+    switch (accept.type(['text', 'json'])) {
+      case 'json':
+        res.setHeader('Content-Type', 'application/json');
+        return res.end(JSON.stringify(promClient.register.getMetricsAsJSON()));
+      case 'text':
+      default:
+        res.setHeader('Content-Type', 'text/plain');
+        return res.end(promClient.register.metrics());
+    }
   }
 
   trackDuration(req, res, next) {
