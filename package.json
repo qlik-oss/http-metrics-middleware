@@ -40,6 +40,6 @@
     "eslint": "5.0.1",
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-plugin-import": "2.13.0",
-    "eslint-plugin-mocha": "5.0.0"
+    "eslint-plugin-mocha": "5.1.0"
   }
 }
