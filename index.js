@@ -144,8 +144,8 @@ class MetricsMiddleware {
 
   trackDuration(req, res, next) {
     if (
-      this.options.excludeRoutes &&
-      this.matchVsRegExps(req.originalUrl, this.options.excludeRoutes)
+      this.options.excludeRoutes
+      && this.matchVsRegExps(req.originalUrl, this.options.excludeRoutes)
     ) {
       return next();
     }
@@ -160,10 +160,10 @@ class MetricsMiddleware {
       };
       // if we're on a route that has been mounted, resp.req.route.path will be set
       if (
-        this.options.includePath &&
-        resp.req &&
-        resp.req.route &&
-        resp.req.route.path
+        this.options.includePath
+        && resp.req
+        && resp.req.route
+        && resp.req.route.path
       ) {
         labels.path = this.options.normalizePath(req, this.options);
       }
@@ -171,8 +171,7 @@ class MetricsMiddleware {
         labels.error = 'true';
       }
 
-      const duration =
-        (parseFloat(end.toFixed(9)) - parseFloat(start.toFixed(9))) / 1000;
+      const duration = (parseFloat(end.toFixed(9)) - parseFloat(start.toFixed(9))) / 1000;
       this.observeDurations(labels, duration);
     });
     return next();
@@ -199,8 +198,8 @@ class MetricsMiddleware {
     if (params) {
       Object.keys(params).forEach((param) => {
         if (
-          Object.prototype.hasOwnProperty.call(params, param) &&
-          !this.options.paramIgnores.includes(param)
+          Object.prototype.hasOwnProperty.call(params, param)
+          && !this.options.paramIgnores.includes(param)
         ) {
           pathValue = this.replaceParam(params, param, pathValue);
         }
@@ -232,9 +231,8 @@ class MetricsMiddleware {
       return false;
     }
 
-    return regexps.some(regexp =>
-      (regexp instanceof RegExp && element.match(regexp)) ||
-      element === regexp);
+    return regexps.some(regexp => (regexp instanceof RegExp && element.match(regexp))
+      || element === regexp);
   }
 }
 

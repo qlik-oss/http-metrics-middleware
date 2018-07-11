@@ -1,6 +1,6 @@
-const MetricsMiddleware = require('../index');
 const os = require('os');
 const promClient = require('prom-client');
+const MetricsMiddleware = require('../index');
 
 const should = chai.should();
 
