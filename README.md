@@ -5,8 +5,6 @@
 
 # http-metrics-middleware
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/qlik-oss/http-metrics-middleware.svg?token=FIXME&ts=FIXME)](https://greenkeeper.io/)
-
 Express middleware with useful prometheus metrics.
 
 This wraps [prom-client][], and adds some default metrics.
