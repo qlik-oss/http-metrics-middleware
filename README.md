@@ -44,6 +44,8 @@ constructor.
 |--------|---------|------|
 | `timeBuckets` | `[ 0.01, 0.1, 0.5, 1, 5 ]` |  the buckets to assign to duration histogram (in seconds) |
 | `quantileBuckets` | `[ 0.1, 0.5, 0.95, 0.99 ]` |  the quantiles to assign to duration summary (0.0 - 1.0) |
+| `quantileMaxAge` | `600` | configures sliding time window for summary (in seconds) |
+| `quantileAgeBuckets` | `5` | configures number of sliding time window buckets for summary |
 | `includeError` | `false` | whether or not to include presence of an unhandled error as a label |
 | `includePath` | `true` |  whether or not to include normalized URL path as a metric label - see [about `includePath`](#about-includepath) below |
 | `normalizePath` | |  a `function(req)` - generates path values from the express `req` object |

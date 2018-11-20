@@ -27,6 +27,8 @@ class MetricsMiddleware {
    * @type {object}
    * @property {number[]} timeBuckets - the buckets to assign to duration histogram (in seconds)
    * @property {number[]} quantileBuckets - the quantiles to assign to duration summary (0.0 - 1.0)
+   * @property {number} quantileMaxAge configures sliding time window for summary (in seconds)
+   * @property {number} quantileAgeBuckets configures number of sliding time window buckets for summary
    * @property {string[]} paramIgnores - array of params _not_ to replace
    * @property {boolean} includeError - whether or not to include presence of an unhandled error as a label - defaults to false
    * @property {boolean} includePath - whether or not to include the URL path as a metric label - defaults to true
@@ -47,6 +49,8 @@ class MetricsMiddleware {
     _.defaults(options, defaultOpts, {
       normalizePath: this.normalizePath.bind(this),
       formatStatusCode: this.normalizeStatusCode.bind(this),
+      quantileMaxAge: 600,
+      quantileAgeBuckets: 5,
     });
     this.options = options;
     this.router = express.Router();
@@ -105,6 +109,8 @@ class MetricsMiddleware {
         help: `duration summary of http responses labeled with: ${labelNames.join(', ')}`,
         labelNames,
         percentiles: this.options.quantileBuckets,
+        maxAgeSeconds: this.options.quantileMaxAge,
+        ageBuckets: this.options.quantileAgeBuckets,
       }));
     }
     if (this.options.enableDurationHistogram) {
