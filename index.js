@@ -10,7 +10,7 @@ const _ = require('lodash');
 
 const defaultOpts = {
   enableDurationHistogram: true,
-  enableDurationSummary: false,
+  enableDurationSummary: true,
   timeBuckets: [0.01, 0.1, 0.5, 1, 5],
   quantileBuckets: [0.1, 0.5, 0.95, 0.99],
   includeError: false,
