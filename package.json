@@ -31,7 +31,7 @@
     "lodash": "4.17.11",
     "on-finished": "2.3.0",
     "performance-now": "2.1.0",
-    "prom-client": "11.5.0",
+    "prom-client": "11.5.1",
     "url-value-parser": "2.0.1"
   },
   "devDependencies": {
