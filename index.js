@@ -237,7 +237,7 @@ class MetricsMiddleware {
       return false;
     }
 
-    return regexps.some(regexp => (regexp instanceof RegExp && element.match(regexp))
+    return regexps.some((regexp) => (regexp instanceof RegExp && element.match(regexp))
       || element === regexp);
   }
 }
