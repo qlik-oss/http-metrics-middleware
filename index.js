@@ -1,4 +1,3 @@
-const accepts = require('accepts');
 const express = require('express');
 const promClient = require('prom-client');
 const UrlValueParser = require('url-value-parser');
@@ -130,22 +129,11 @@ class MetricsMiddleware {
 
   metricsRoute(req, res) {
     if (req.headers['x-forwarded-for']) {
-      res.writeHead(404, {
-        'Content-Type': 'text/plain',
-      });
+      res.writeHead(404);
       return res.end('Not Found');
     }
     res.statusCode = 200;
-    const accept = accepts(req);
-    switch (accept.type(['text', 'json'])) {
-      case 'json':
-        res.setHeader('Content-Type', 'application/json');
-        return res.end(JSON.stringify(promClient.register.getMetricsAsJSON()));
-      case 'text':
-      default:
-        res.setHeader('Content-Type', 'text/plain');
-        return res.end(promClient.register.metrics());
-    }
+    return res.end(promClient.register.metrics());
   }
 
   trackDuration(req, res, next) {
