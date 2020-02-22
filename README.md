@@ -9,6 +9,8 @@ Express middleware with useful prometheus metrics.
 
 This wraps [prom-client][], and adds some default metrics.
 
+_*Note:* As of v1.2.0, this module requires Node.js v10 or above._
+
 ## Contributing
 
 Contributions are welcome and encouraged! Please follow the instructions in [CONTRIBUTING.md](.github/CONTRIBUTING.md).

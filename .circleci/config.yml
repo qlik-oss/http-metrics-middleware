@@ -3,19 +3,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8
+      - image: qlik/node-build
     working_directory: ~/http-metrics-middleware
     steps:
       - checkout
-      - run:
-          name: greenkeeper-lockfile - Update
-          command: |
-            sudo npm install -g greenkeeper-lockfile@1
-            greenkeeper-lockfile-update
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm install --no-save
-      - run: greenkeeper-lockfile-upload
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
@@ -32,4 +26,9 @@ jobs:
               npm version $VER --no-git-tag-version
             fi
       - run: npm run lint
-      - run: npm run test:codeclimate
+      - run:
+          name: Unit tests
+          command: |
+            cc-test-reporter before-build
+            npm test
+            cc-test-reporter after-build -t lcov --exit-code $?
