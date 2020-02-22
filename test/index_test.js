@@ -110,13 +110,11 @@ describe('MetricsMiddleware', () => {
       const ns = 'foo';
       const version = '1.2.3';
       const revision = 'abcd1234';
-      const buildTime = '2017-07-07T07:07:07.007Z';
-      const m = metrics.initBuildInfo(ns, version, revision, buildTime);
+      const m = metrics.initBuildInfo(ns, version, revision);
       m.name.should.eql('foo_build_info');
       m.hashMap[Object.keys(m.hashMap)[0]].labels.should.eql({
         version,
         revision,
-        buildTime,
         nodeVersion: process.version,
         os: process.platform,
         platform: 'node',
