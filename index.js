@@ -63,30 +63,20 @@ class MetricsMiddleware {
    * @param {string} ns - the namespace for the metric - usually the name of the service
    * @param {string} version - the service's version
    * @param {string} revision - the git SHA hash for the running code (usually short-SHA)
-   * @param {string} buildTime - the build timestamp for the running code
    */
-  initBuildInfo(ns, version, revision, buildTime) {
+  initBuildInfo(ns, version, revision) {
     if (!ns) {
       throw new Error('namespace (ns) must be provided for build_info metric!');
     }
     const buildInfo = new promClient.Gauge({
       name: `${ns}_build_info`,
       help: `A metric with a constant 1 value labeled by version, revision, platform, nodeVersion, os from which ${ns} was built`,
-      labelNames: [
-        'version',
-        'revision',
-        'buildTime',
-        'platform',
-        'nodeVersion',
-        'os',
-        'osRelease',
-      ],
+      labelNames: ['version', 'revision', 'platform', 'nodeVersion', 'os', 'osRelease'],
     });
     buildInfo.set(
       {
         version,
         revision,
-        buildTime,
         platform: process.release.name,
         nodeVersion: process.version,
         os: process.platform,
