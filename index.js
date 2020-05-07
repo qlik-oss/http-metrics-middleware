@@ -8,6 +8,7 @@ const now = require('performance-now');
 const _ = require('lodash');
 
 const defaultOpts = {
+  metricsPath: '/metrics',
   enableDurationHistogram: true,
   enableDurationSummary: true,
   timeBuckets: [0.01, 0.1, 0.5, 1, 5],
@@ -24,6 +25,7 @@ class MetricsMiddleware {
   /**
    * @typedef MetricsOptions
    * @type {object}
+   * @property {string} metricsPath - defines custom metrics path
    * @property {number[]} timeBuckets - the buckets to assign to duration histogram (in seconds)
    * @property {number[]} quantileBuckets - the quantiles to assign to duration summary (0.0 - 1.0)
    * @property {number} quantileMaxAge configures sliding time window for summary (in seconds)
@@ -112,7 +114,7 @@ class MetricsMiddleware {
     }
     promClient.collectDefaultMetrics();
 
-    this.router.get('/metrics', this.metricsRoute.bind(this));
+    this.router.get(this.options.metricsPath, this.metricsRoute.bind(this));
     this.router.use(this.trackDuration.bind(this));
     return this.router;
   }
