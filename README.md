@@ -44,6 +44,7 @@ constructor.
 
 | option | default | info |
 |--------|---------|------|
+| `metricsPath` | `/metrics` |  the metrics exposed path | 
 | `timeBuckets` | `[ 0.01, 0.1, 0.5, 1, 5 ]` |  the buckets to assign to duration histogram (in seconds) |
 | `quantileBuckets` | `[ 0.1, 0.5, 0.95, 0.99 ]` |  the quantiles to assign to duration summary (0.0 - 1.0) |
 | `quantileMaxAge` | `600` | configures sliding time window for summary (in seconds) |
