@@ -337,11 +337,11 @@ describe('MetricsMiddleware', () => {
       resMock.verify();
     });
 
-    it('registers metrics', () => {
-      registerMock.expects('metrics').returns('foo');
+    it('registers metrics', async () => {
+      registerMock.expects('metrics').resolves('foo');
       resMock.expects('end').withArgs('foo');
 
-      metrics.metricsRoute({ headers: { accept: 'text/plain' } }, res);
+      await metrics.metricsRoute({ headers: { accept: 'text/plain' } }, res);
       resMock.verify();
       metricsPromClient.verify();
       registerMock.verify();

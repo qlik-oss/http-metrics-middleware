@@ -119,13 +119,14 @@ class MetricsMiddleware {
     return this.router;
   }
 
-  metricsRoute(req, res) {
+  async metricsRoute(req, res) {
     if (req.headers['x-forwarded-for']) {
       res.writeHead(404);
       return res.end('Not Found');
     }
+
     res.statusCode = 200;
-    return res.end(promClient.register.metrics());
+    return res.end(await promClient.register.metrics());
   }
 
   trackDuration(req, res, next) {
