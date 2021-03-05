@@ -32,3 +32,9 @@ jobs:
             cc-test-reporter before-build
             npm test
             cc-test-reporter after-build -t lcov --exit-code $?
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
