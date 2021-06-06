@@ -34,13 +34,13 @@
     "on-finished": "2.3.0",
     "performance-now": "2.1.0",
     "prom-client": "13.1.0",
-    "url-value-parser": "2.0.1"
+    "url-value-parser": "2.0.3"
   },
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
-    "eslint": "7.21.0",
+    "eslint": "7.28.0",
     "eslint-config-airbnb-base": "14.2.1",
-    "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-mocha": "8.1.0"
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-mocha": "8.2.0"
   }
 }
