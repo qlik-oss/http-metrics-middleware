@@ -37,7 +37,7 @@
     "url-value-parser": "2.0.1"
   },
   "devDependencies": {
-    "@after-work.js/aw": "6.0.14",
+    "@after-work.js/aw": "7.0.0-alpha.1",
     "eslint": "7.21.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-plugin-import": "2.22.1",
