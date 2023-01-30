@@ -40,7 +40,7 @@
     "@after-work.js/aw": "7.0.0-alpha.1",
     "eslint": "7.32.0",
     "eslint-config-airbnb-base": "15.0.0",
-    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-import": "2.27.5",
     "eslint-plugin-mocha": "10.1.0"
   }
 }
