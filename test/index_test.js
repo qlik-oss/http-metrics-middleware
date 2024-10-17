@@ -1,7 +1,8 @@
 const os = require('os');
 const promClient = require('prom-client');
 const MetricsMiddleware = require('../index');
-
+const sinon = require("sinon");
+const chai = require('chai');
 const should = chai.should();
 
 describe('MetricsMiddleware', () => {
