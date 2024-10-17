@@ -1,6 +1,6 @@
 {
   "name": "http-metrics-middleware",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Express middleware for adding common prometheus metrics",
   "author": "QlikTech International AB",
   "license": "MIT",
