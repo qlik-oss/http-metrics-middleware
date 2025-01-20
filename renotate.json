@@ -1,0 +1,12 @@
+{
+  "packageRules": {
+    "matchPackageNames": [
+      "mocha",
+      "chai"
+    ],
+    "matchDepTypes": [
+      "devDependencies"
+    ],
+    "enabled": false
+  }
+}
