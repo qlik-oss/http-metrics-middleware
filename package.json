@@ -38,10 +38,10 @@
   },
   "devDependencies": {
     "chai": "^5.0.0",
-    "eslint": "8.57.0",
+    "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-mocha": "10.4.3",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-mocha": "10.5.0",
     "mocha": "^10.7.3",
     "sinon": "^19.0.2"
   }
