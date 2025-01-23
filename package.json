@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "NODE_ENV=test mocha --exit -- ./test/**/*.js",
+    "test-coverage": "nyc --reporter=lcov npm test",
     "lint": "eslint .",
     "lint-fix": "eslint --fix ."
   },
@@ -43,6 +44,7 @@
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-mocha": "10.5.0",
     "mocha": "^10.8.2",
+    "nyc": "^17.1.0",
     "sinon": "^19.0.2"
   }
 }

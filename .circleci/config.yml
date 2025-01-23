@@ -30,9 +30,9 @@ jobs:
           name: Unit tests
           command: |
             cc-test-reporter before-build
-            npm test
+            npm run test-coverage
             ls -alh
-            ls -alh reports
+            ls -alh coverage
             cc-test-reporter after-build -t lcov --exit-code $?
 
 workflows:
