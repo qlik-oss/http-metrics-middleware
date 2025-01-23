@@ -31,8 +31,6 @@ jobs:
           command: |
             cc-test-reporter before-build
             npm run test-coverage
-            ls -alh
-            ls -alh coverage
             cc-test-reporter after-build -t lcov --exit-code $?
 
 workflows:
