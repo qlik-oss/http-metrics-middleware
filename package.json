@@ -37,7 +37,7 @@
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
-    "chai": "^5.0.0",
+    "chai": "^4.5.0",
     "eslint": "8.57.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.31.0",
