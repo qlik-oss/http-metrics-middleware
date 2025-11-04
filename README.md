@@ -58,6 +58,7 @@ constructor.
 | `enableDurationSummary` | `true` |  whether to enable the request duration summary |
 | `durationHistogramName` | `http_request_duration_seconds` |  the name of the duration histogram metric - must be unique |
 | `durationSummaryName` | `http_request_duration_quantile_seconds` |  the name of duration summary metric - must be unique |
+| `excludeRoutes` | |  routes to exclude from request duration metric |
 
 #### about `includePath`
 

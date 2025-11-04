@@ -39,6 +39,7 @@ class MetricsMiddleware {
    * @property {boolean} enableDurationSummary - whether to enable the request duration summary (default: true)
    * @property {string} durationHistogramName - the name of the duration histogram metric (if enabled) - must be unique
    * @property {string} durationSummaryName - the name of duration summary metric (if enabled) - must be unique
+   * @property {string[]} excludeRoutes - routes to exclude from request duration metric
    */
 
   /**
