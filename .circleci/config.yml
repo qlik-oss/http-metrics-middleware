@@ -29,9 +29,7 @@ jobs:
       - run:
           name: Unit tests
           command: |
-            cc-test-reporter before-build
             npm run test-coverage
-            cc-test-reporter after-build -t lcov --exit-code $?
 
 workflows:
   version: 2
