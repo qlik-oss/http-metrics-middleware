@@ -281,6 +281,7 @@ describe('MetricsMiddleware', () => {
       require.cache[onFinishedPath].exports = onFinishedStub;
       delete require.cache[middlewarePath];
 
+      // eslint-disable-next-line global-require
       const ReloadedMiddleware = require('../index');
       const localMetrics = new ReloadedMiddleware({
         includeError: true,
