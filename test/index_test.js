@@ -99,6 +99,23 @@ describe('MetricsMiddleware', () => {
       metrics.options.paramIgnores = ['resource'];
       metrics.normalizePath({ originalUrl, params: { id, resource } }).should.eql(expected);
     });
+
+    it('ignores inherited params properties', () => {
+      const inherited = { id: 'inherited-id' };
+      const params = Object.create(inherited);
+      const originalUrl = '/api/v1/foo/inherited-id';
+
+      metrics.normalizePath({ originalUrl, params }).should.eql(originalUrl);
+    });
+  });
+
+  describe('replaceParam', () => {
+    it('returns the same path when no param value can be replaced', () => {
+      const path = '/api/v1/foo/bar';
+      const params = { id: 'not-present' };
+
+      metrics.replaceParam(params, 'id', path).should.eql(path);
+    });
   });
 
   describe('initBuildInfo', () => {
@@ -249,6 +266,47 @@ describe('MetricsMiddleware', () => {
           done();
         });
       });
+    });
+
+    it('includes error label when on-finished callback receives an error', (done) => {
+      const onFinishedPath = require.resolve('on-finished');
+      const middlewarePath = require.resolve('../index');
+      const originalOnFinished = require.cache[onFinishedPath].exports;
+      const originalMiddleware = require.cache[middlewarePath].exports;
+
+      const onFinishedStub = sinon.stub().callsFake((res, callback) => {
+        callback(new Error('boom'), res);
+      });
+
+      require.cache[onFinishedPath].exports = onFinishedStub;
+      delete require.cache[middlewarePath];
+
+      const ReloadedMiddleware = require('../index');
+      const localMetrics = new ReloadedMiddleware({
+        includeError: true,
+        includePath: false,
+      });
+      const observeSpy = sinon.spy(localMetrics, 'observeDurations');
+
+      localMetrics.trackDuration(
+        { method: 'GET', originalUrl: '/bar' },
+        { status_code: 500, req: {} },
+        () => {
+          setImmediate(() => {
+            observeSpy.calledOnce.should.equal(true);
+            observeSpy.firstCall.args[0].should.deep.equal({
+              status_code: 500,
+              method: 'GET',
+              error: 'true',
+            });
+
+            observeSpy.restore();
+            require.cache[onFinishedPath].exports = originalOnFinished;
+            require.cache[middlewarePath].exports = originalMiddleware;
+            done();
+          });
+        },
+      );
     });
   });
 
