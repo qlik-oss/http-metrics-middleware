@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/qlik-oss/http-metrics-middleware.git"
+    "url": "git+https://github.com/qlik-oss/http-metrics-middleware.git"
   },
   "keywords": [
     "express",
